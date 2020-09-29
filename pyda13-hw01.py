@@ -13,72 +13,46 @@ else: print('Фраза 2 длиннее Фразы 1')
 
 
 #Задание 2
-#Дана переменная, в которой хранится четырехзначное число (год).
+#Дана переменная, в которой хранится четырехзначное число (год). 
 #Необходимо написать программу, которая выведет, является ли данный год високосным или обычным.
 
 year = input('Введите год: ')
 year = int(year)
-if (year % 4) == 0: print('Високосный год')
+if (year % 4 == 0) and (year % 100 != 0) or (year % 400 == 0): print('Високосный год')
 else: print('Обычный год')
 
 #Задание 3
 #Необходимо написать программу, которая будет запрашивать у пользователя месяц и дату рождения
 #и выводить соответствующий знак зодиака.
 
-month = input('Введите месяц: ')
-day = input('Введите число: ')
-day = int(day)
+date = int(input("Введите день рождения:"))
+month = input("Введите месяц рождения [напр.Август]:"))
+year = int(input("Введите год рождения:"))
 
-if month == 'декабрь':
-    if (1 <= day <= 22): print('Стрелец')
-    elif (22 < day <= 31): print('Козерог')
-    else: print("Ошибочное число:", day)
-elif month == 'январь':
-    if (1 <= day <= 19): print('Козерог')
-    elif (19 < day <= 31): print('Водолей')
-    else: print("Ошибочное число:", day)
-elif month == 'февраль':
-    if (1 <= day <= 19): print('Водолей')
-    elif (19 < day <= 28): print('Рыбы')
-    else: print("Ошибочное число:", day)
-elif month == 'март':
-    if (1 <= day <= 20): print('Рыбы')
-    elif (20 < day <= 31): print('Овен')
-    else: print("Ошибочное число:", day)
-elif month == 'апрель':
-    if (1 <= day <= 20): print('Овен')
-    elif (20 < day <= 30): print('Телец')
-    else: print("Ошибочное число:", day)
-elif month == 'май':
-    if (1 <= day <= 20): print('Телец')
-    elif (20 < day <= 31): print('Близнецы')
-    else: print("Ошибочное число:", day)
-elif month == 'июнь':
-    if (1 <= day <= 20): print('Близнецы')
-    elif (20 < day <= 30): print('Рак')
-    else: print("Ошибочное число:", day)
-elif month == 'июль':
-    if (1 <= day <= 22): print('Рак')
-    elif (22 < day <= 31): print('Лев')
-    else: print("Ошибочное число:", day)
-elif month == 'август':
-    if (1 <= day <= 22): print('Лев')
-    elif (22 < day <= 31): print('Дева')
-    else: print("Ошибочное число:", day)
-elif month == 'сентябрь':
-    if (1 <= day <= 22): print('Дева')
-    elif (22 < day <= 30): print('Весы')
-    else: print("Ошибочное число:", day)
-elif month == 'октябрь':
-    if (1 <= day <= 22): print('Весы')
-    elif (22 < day <= 31): print('Скорпион')
-    else: print("Ошибочное число:", day)
-elif month == 'ноябрь':
-    if (1 <= day <= 22): print('Скорпион')
-    elif (22 < day <= 30): print('Стрелец')
-    else: print("Ошибочное число:", day)
-else:
-    print('Введите правильно месяц рождения')
+if (date>=22 and date<=31 and month=='Декабрь') or (month=='Январь' and date >= 1 and date <= 20):
+   print("Знак зодиака:Козерог")
+elif (date>=21 and date<=31 and month=='Январь') or (month=='Февраль' and date >= 1 and date <= 18):
+   print("Знак зодиака:Водолей")
+elif (date>=19 and date<=29 and month=='Февраль') or (month=='Март' and date >= 1 and date <= 20):
+   print("Знак зодиака:Рыбы")
+elif (date >= 21 and date <= 31 and month == 'Март') or (month == 'Апрель' and date >= 1 and date <= 19):
+    print("Знак зодиака: Овен")
+elif (date >= 20 and date <= 30 and month == 'Апрель') or (month == 'Май' and date >= 1 and date <=20):
+   print("Знак зодиака:Телец")
+elif (date >= 21 and date <= 31 and month == 'Май') or (month == 'Июнь' and date >= 1 and date <= 21):
+   print("Знак зодиака:Близнецы")
+elif (date >= 22 and date <= 30 and month == 'Июнь') or (month == 'Июль' and date >= 1 and date <= 22):
+   print("Знак зодиака:Рак")
+elif (date >= 23 and date <= 31 and month == 'Июль') or (month == 'Август' and date >= 1 and date <= 22):
+   print("Знак зодиака:Лев")
+elif (date >= 23 and date <= 31 and month == 'Август') or (month == 'Сентябрь' and date >= 1 and date <= 22):
+   print("Знак зодиака:Дева")
+elif (date >= 23 and date <= 30 and month == 'Сентябрь') or (month == 'Октябрь' and date >= 1 and date <= 23):
+   print("Знак зодиака:Весы")
+elif (date >= 24 and date <= 31 and month == 'Октябрь') or( month == 'Ноябрь' and date >= 1 and date <= 22):
+   print("Знак зодиака:Скорпион")
+elif (date>=23 and date<=30 and month=='Ноябрь') or( month=='Декабрь' and date>=1 and date<=21):
+   print("Знак зодиака:Стрелец")
 print('Конец программы')
 
 
@@ -100,9 +74,9 @@ width = int(input('Введите ширину товара: '))
 length = int(input('Введите длину товара: '))
 height = int(input('Введите высоту товара: '))
 
-if (width <= 15) and (length <= 15) and (height <= 15):
+if (width <= 15) and (length <= 15) and (height <= 15): 
     print('Коробка №1')
-elif (15 < width < 50) or (15 < length < 50) or (15 < height < 50):
+elif (length < 200) and ((15 < width < 50) or (15 < length < 50) or (15 < height < 50)):
     print('Коробка №2')
 elif length >= 200:
     print('Упаковка для лыж')
@@ -128,4 +102,28 @@ else:
         print('Счастливый билет')
     else:
         print('Несчастливый билет')
+print('Конец программы')
+
+
+#Задание 6 (необязательное)
+#Напишите программу, которая сможет вычислять площади трех фигур (круг, треугольник и прямоугольник). Тип фигуры запрашиваем через пользовательский ввод, после чего делаем запрос характеристик фигуры:
+#если пользователь выбрал круг, запрашиваем его радиус,
+#если треугольник – длины трех его сторон;
+#если прямоугольник – длины двух его сторон.
+
+ftype = str(input('Введите тип фигуры [круг, треугольник, прямоугольник]: '))
+
+if ftype == 'прямоугольник':
+    a = int(input('Введите длину стороны A: '))
+    b = int(input('Введите длину стороны B: '))
+    print ('Площадь прямоугольника: ', "%.2f" % (a * b))
+elif ftype == 'треугольник': 
+    a = int(input('Введите длину стороны A: '))
+    b = int(input('Введите длину стороны B: '))
+    c = int(input('Введите длину стороны C: '))
+    p = (a + b + c) / 2
+    print ('Площадь треугольника: ', "%.2f" % ((p * (p - a) * (p - b) * (p - c)) ** 0.5))
+elif ftype == 'круг':
+    r = int(input('Введите радиус: '))
+    print ('Площадь круга: ', "%.2f" % (3.14 * r **2))
 print('Конец программы')
