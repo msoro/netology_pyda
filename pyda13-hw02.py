@@ -65,6 +65,22 @@ if len(boys) == len(girls):
         i = i + 1
 else:
     print('Внимание, кто-то может остаться без пары!')
+# ---------------------------------------------------------#
+# Задание 3 через кортежи
+# Задание 3 через кортежи
+boys = ['Peter', 'Alex', 'John', 'Arthur', 'Richard']
+# boys = ['Peter', 'Alex', 'John', 'Arthur', 'Richard', 'Michael']
+girls = ['Kate', 'Liza', 'Kira', 'Emma', 'Trisha']
+print('Результат:')
+if len(boys) == len(girls):
+    boys_s = sorted(boys)
+    girls_s = sorted(girls)
+    ideal = list(zip(boys_s, girls_s))
+    print('Идеальные пары:')
+    for pair in ideal:
+        print(pair[0], 'и', pair[1])
+else:
+    print('Внимание, кто-то может остаться без пары!')
 
 # ---------------------------------------------------------#
 # Задание 4
