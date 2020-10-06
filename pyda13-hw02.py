@@ -9,7 +9,7 @@
 # word = 'testing’
 # Результат:
 # t
-word = str(input('Введите слово: '))
+word = input('Введите слово: ')
 med = len(word) // 2
 if len(word) % 2 == 0:
     print(word[med - 1:med + 1])
@@ -60,13 +60,12 @@ if len(boys) == len(girls):
     girls_s = sorted(girls)
     print('Идеальные пары:')
     i = 0
-    while i <= len(boys):
+    while i < len(boys):
         print(boys_s[i], 'и', girls_s[i])
         i = i + 1
 else:
     print('Внимание, кто-то может остаться без пары!')
 # ---------------------------------------------------------#
-# Задание 3 через кортежи
 # Задание 3 через кортежи
 boys = ['Peter', 'Alex', 'John', 'Arthur', 'Richard']
 # boys = ['Peter', 'Alex', 'John', 'Arthur', 'Richard', 'Michael']
@@ -146,7 +145,6 @@ for rec in stream:
 avg = sum(users.values())/len(users)
 print(round(avg,2))
 
-
 # ---------------------------------------------------------#
 # Задание 6 (необязательное)
 # Необходимо у пользователя запрашивать набор чисел разделенных пробелом.
@@ -161,3 +159,4 @@ counter = Counter(symbols)
 doubles = {element: count for element, count in counter.items() if count > 1}
 print('Результат: ')
 print(' '.join(doubles.keys()))
+
