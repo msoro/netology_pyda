@@ -15,17 +15,17 @@ def my_commands():
     while comm != 'q':
         comm = input('Введите команду:')
         if comm == 'p':
-            name = look_for_name(input('Введите номер документа: '))
+            dname = look_for_name(input('Введите номер документа: '))
             print('Результат:')
-            if name != 0:
-                print('Владелец документа:', name)
+            if dname != 0:
+                print('Владелец документа:', dname)
             else:
                 print('Документ не найден в базе')
         elif comm == 's':
-            ddir = look_for_dir(input('Введите номер документа: '))
+            sdir = look_for_dir(input('Введите номер документа: '))
             print('Результат:')
-            if ddir != 0:
-                print('Документ хранится на полке:', ddir)
+            if sdir != 0:
+                print('Документ хранится на полке:', sdir)
             else:
                 print('Документ не найден в базе')
         elif comm == 'l':
@@ -45,6 +45,20 @@ def my_commands():
             ddir = del_for_dir(input('Введите номер полки: '))
             print('Результат:')
             print(ddir + list_for_dir())
+        elif comm == 'ad':
+            adoc = add_for_doc(input('Введите номер документа: '))
+            print(adoc)
+            print('Текущий список документов:')
+            look_for_info()
+        elif comm == 'd':
+            ddoc = del_for_doc(input('Введите номер документа: '))
+            print(ddoc + 'Текущий список документов:')
+            look_for_info()
+        elif comm == 'm':
+            mdoc = move_for_dir(input('Введите номер документа: '))
+            print(mdoc)
+            print('Текущий список документов:')
+            look_for_info()
         elif comm == 'q':
             print('Завершение работы программы.')
             break
@@ -83,7 +97,7 @@ def look_for_info():
                 s = s + j
                 break
             else:
-                s = s + 'не найдена'
+                s = s + 'не найдена. '
         print(string + s)
 ##
 
@@ -104,7 +118,7 @@ def add_for_dir(number):
         else:
             return 0
     else:
-        print('Некорректный номер полки')
+        print('Некорректный номер полки. ')
 ##
 
 # Пункт 5. Пользователь по команде “ds” может удалить существующую полку из данных
@@ -116,11 +130,78 @@ def del_for_dir(dir_number):
         for key, value in directories.items():
             if value == '':
                 key.remove(dir_number)
-                return 'Полка удалена.'
+                return 'Полка удалена. '
             else:
-                return 'На полке есть документы, удалите их перед удалением полки.'
+                return 'На полке есть документы, удалите их перед удалением полки. '
     else:
-        return 'Такой полки не существует.'
+        return 'Такой полки не существует. '
 ##
+
+# Задание 2 (необязательное)
+# Пункт 1. Пользователь по команде “ad” может добавить новый документ в данные
+def add_for_doc(doc_number):
+    if doc_number not in documents:
+        doc_type = input('Введите тип документа: ')
+        doc_name = input('Введите владельца документа: ')
+        doc_dir = input('Введите полку для хранения: ')
+        if doc_dir in directories:
+            new_doc = dict(type = doc_type, number = doc_number, name = doc_name)
+            documents.append(new_doc)
+            directories[doc_dir] += [doc_number]
+            return 'Документ успешно добавлен. '
+        else:
+            return 'Такой полки не существует. Добавьте полку командой as. '
+    else:
+        return 0
+##
+
+# Пункт 2. Пользователь по команде “d” может удалить документ из данных.
+# работает
+def del_for_doc(doc_number):
+    init_len = len(documents)
+    for i, j in enumerate(documents):
+        if doc_number == j['number']:
+            documents.pop(i)
+    if init_len == len(documents):
+        return 'Документ не найден в базе. '
+    for key, value in directories.items():
+        if doc_number in value:
+            value.remove(doc_number)
+    return 'Документ удален. '
+# не работает :( - надо уточнить преподавателя - где ошибка логики ?!
+#     if doc_number not in documents:
+#         return 'Документ не найден в базе. '
+#     else:
+#         for i, d in enumerate(documents):
+#             if d['number'] == doc_number:
+#                 documents.pop(i)
+#         for key, value in directories.items():
+#             if doc_number in value:
+#                 value.remove(doc_number)
+#         return 'Документ удален.'
+##
+
+
+# Пункт 3. Пользователь по команде “m” может переместить документ с полки на полку
+#
+def move_for_dir(doc_number):
+    is_doc = False
+    ndir = input('Введите номер полки: ')
+    if ndir in directories:
+        for key, value in directories.items():
+            if doc_number in value:
+                is_doc = True
+                directories[ndir] += [doc_number]
+                value.remove(doc_number)
+        if is_doc == True:
+            return 'Документ перемещен. '
+        else :
+            return 'Документ не найден в базе. '
+    else:
+        s = 'Такой полки не существует.' + list_for_dir()
+        return s
+##
+
+
 
 my_commands()
